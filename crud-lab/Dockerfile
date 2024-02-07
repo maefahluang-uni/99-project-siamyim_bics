@@ -5,11 +5,11 @@ ADD package.json /tmp/package.json
 RUN cd /tmp && npm install
 
 # Copy deps
-RUN mkdir -p /opt/crud_lab-app && cp -a /tmp/node_modules /opt/crud_lab
+RUN mkdir -p /opt/bics_lab-app && cp -a /tmp/node_modules /opt/bics_lab
 
 # Setup workdir
-WORKDIR /opt/crud_lab-app
-COPY . /opt/crud_lab-app
+WORKDIR /opt/bics_lab-app
+COPY . /opt/bics_lab-app
 
 # run
 EXPOSE 3000
