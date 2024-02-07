@@ -81,7 +81,40 @@ function closeModal() {
     $(".modal").css('display','none')
 }
 
-//function add to cart//
+var cart = [];
+function addtocart() {
+    var pass = true;
+
+    for (let i = 0; i < cart.length; i++) {
+        if( productindex == cart[i].index ) {
+            console.log('found same product')
+            cart[i].count++;
+            pass = false;
+        }
+    }
+
+    if(pass) {
+        var obj = {
+            index: productindex,
+            id: product[productindex].id,
+            name: product[productindex].name,
+            status: product[productindex].status,
+            img: product[productindex].img,
+            type: product[productindex].type,
+            count: 1
+        };
+        // console.log(obj)
+        cart.push(obj)
+    }
+    console.log(cart)
+
+    Swal.fire({
+        icon: 'success',
+        title: 'Add ' + product[productindex].name + ' to shelf !'
+    })
+    $("#cartcount").css('display','flex').text(cart.length)
+}
+
 function openCart() {
     $('#modalCart').css('display','flex')
     rendercart();
@@ -110,5 +143,48 @@ function rendercart() {
     }
     else {
         $("#mycart").html(`<p>Not found product list</p>`)
+    }
+}
+
+function deinitems(action, index) {
+    if(action == '-') {
+        if(cart[index].count > 0) {
+            cart[index].count--;
+            $("#countitems"+index).text(cart[index].count)
+
+            if(cart[index].count <= 0) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Are you sure to delete?',
+                    showConfirmButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: 'Delete',
+                    cancelButtonText: 'Cancel'
+                }).then((res) => {
+                  if(res.isConfirmed) {
+                     cart.splice(index, 1) 
+                     console.log(cart)
+                     rendercart();
+                     $("#cartcount").css('display','flex').text(cart.length)
+                     
+                     if(cart.length <= 0) {
+                        $("#cartcount").css('display','none')
+                     }
+                  }  
+                  else {
+                    cart[index].count++;
+                    $("#countitems"+index).text(cart[index].count)
+                    rendercart();
+                  }
+                })
+            }
+            rendercart();
+        }
+        
+    }
+    else if(action == '+') {
+        cart[index].count++;
+        $("#countitems"+index).text(cart[index].count)
+        rendercart();
     }
 }
