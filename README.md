@@ -4,7 +4,7 @@ The Borrowing Items and Check-in System of the Software Engineering Lab (BICS-SE
 The SiamYim group is dedicated to establishing the Borrowing and Returning Material Equipment System (BICS-SEL) in order to meet the needs of users within the material and equipment borrowing industry. The BICS-SEL will be used to collect and manage statistical data related to material and equipment borrowing.
 
 -Decide Features From Admin page for managemant products.
-F1 Add Product for add name of product, code of product, quantity of product. will be show in table list of product.
+F1 Add New Product for add name of product, code of product, quantity of product. will be show in table list of product(CRUD).(Mr.Sirikorn Khamthai)
 ## Members
 Mr.Sirikorn Khamthai 6431503106
 Mrs.Somsri Khaokrachang 6431503061
